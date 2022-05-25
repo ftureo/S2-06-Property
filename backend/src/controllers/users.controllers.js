@@ -1,6 +1,8 @@
 // Import Models
 import User from "../models/User.js";
 
+import createJWT from "../helpers/CreateJWT.js";
+
 // Import Helpers
 import AppError from "../helpers/AppError.js";
 import createId from "../helpers/createId.js";
@@ -26,5 +28,34 @@ const createNewUser = async (req, res, next) => {
     console.log(error);
   }
 };
+// loguear al user
+const authenticate = async (req, res, next) => {
+  const { email, password } = req.body;
+  // Comprobar si el user existe en la db
+  const user = await User.findOne({ email: email });
+  if (!user) {
+    const error = new Error("User not found");
+    return res.status(400).json({ msg: error.message });
+  }
+  // comprobar si el user esta confirmado
+  if (!user.confirmed) {
+    const error = new Error("Your account has not been confirmed");
+    return res.status(400).json({ msg: error.message });
+  }
 
-export { createNewUser };
+  // comprobar su password
+  if (await user.comprobarPassword(password)) {
+    // si retorno el usuario me retorna mucha info que no necesito como la password
+    return res.json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      token: createJWT(user._id) // para comprobar la password le mandamos un token
+    });
+  } else {
+    const error = new Error("Your password is incorrect");
+    return res.status(400).json({ msg: error.message });
+  }
+};
+
+export { createNewUser, authenticate };
