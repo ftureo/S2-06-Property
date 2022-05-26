@@ -58,4 +58,25 @@ const authenticate = async (req, res, next) => {
   }
 };
 
-export { createNewUser, authenticate };
+// para confirmar la cuenta que por defecto esta en false
+// La idea es que le llegue un email para confirmar su cuenta y lo haga a travez de un token
+const confirmed = async (req, res) => {
+  // vamos a acceder a los datos del token a travez de la url CLASE 378
+  const { token } = req.params; // extraemos el token que viene de la url
+  const userConfirmed = await User.findOne({ token }); // comprobamos si el token es el mismo que esta en la db
+  if (!userConfirmed) {
+    const error = new Error(" incorrect Token");
+    return res.status(400).json({ msg: error.message });
+  }
+  // cuando encontramos al usuario que esta ok, lo primero es pasar el confirmed  a  true
+  try {
+    userConfirmed.confirmed = true;
+    userConfirmed.token = ""; // la idea es que el token es de un solo uso por eso se tiene  que eliminar
+    await userConfirmed.save();
+    res.json({ msg: "Successfully confirmed User" });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { createNewUser, authenticate, confirmed };
