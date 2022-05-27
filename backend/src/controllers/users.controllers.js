@@ -79,4 +79,58 @@ const confirmed = async (req, res) => {
   }
 };
 
-export { createNewUser, authenticate, confirmed };
+// El usuario va a enviar su email al cual hay que comprobar que exista, que este confirmado y entonces ahi le mandamos un token para que cambie el password
+const forgotPassword = async (req, res) => {
+  const { email } = req.body;
+  const user = await User.findOne({ email: email });
+  if (!user) {
+    const error = new Error("User not found");
+    return res.status(400).json({ msg: error.message });
+  }
+
+  // si existe el user
+  try {
+    user.token = createId(); // aca genero un  nuevo token que es el que le va a llegar por mail
+    await user.save();
+    res.json({ msg: "We have sent an email with intructions" });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// una vez que le llego el mail tenemos que validar que el token sea valido e identificar que user intenta cambiar el password
+const checkToken = async (req, res) => {
+  const { token } = req.params;
+  const validToken = await User.findOne({ token });
+  if (validToken) {
+    res.json({ msg: "The token is correct and the user exist" });
+  } else {
+    const error = new Error(" incorrect Token");
+    return res.status(400).json({ msg: error.message });
+  }
+};
+
+// una vez que tenemos las comprobacion tenemos que enviar el nuevo password(a travez de un form) y hashearlo CLASE 382
+const newToken = async (req, res) => {
+  const { token } = req.params;
+  const { password } = req.body;
+  // primero comprobamos que el token sea valido
+  const user = await User.findOne({ token });
+  if (user) {
+    user.password = password; // aca le asignamos el password que viene desde el form(que es el que estamos cambiando) y lo asigamos al objeto user
+    // Eliminamos el token
+    user.token = "";
+    // almacenamos los cambios en la db
+    try {
+      await user.save();
+      res.json({ msg: "The password was modified successfully" });
+    } catch (error) {
+      console.log(error);
+    }
+  } else {
+    const error = new Error(" incorrect Token");
+    return res.status(400).json({ msg: error.message });
+  }
+};
+
+export { createNewUser, authenticate, confirmed, forgotPassword, checkToken, newToken };
