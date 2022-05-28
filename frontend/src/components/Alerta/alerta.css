@@ -1,0 +1,11 @@
+.error {
+  color: red;
+}
+
+.true {
+  color: green;
+}
+
+.msg {
+  background-color: yellow;
+}

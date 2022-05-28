@@ -22,8 +22,8 @@ const createNewUser = async (req, res, next) => {
   try {
     const user = new User(req.body); // aca creamos un nuevo objeto de tipo user con la info del modelo
     user.token = createId(); // user es un objeto y le asignamos al token la funcion createId que es un id aleatorio(generamos un token por user)
-    const userSave = await user.save(); // le ponemos await, para que espere a que almacene el objeto y luego si te da la respuesta del json
-    res.json(userSave);
+    await user.save(); // le ponemos await, para que espere a que almacene el objeto y luego si te da la respuesta del json
+    res.json("user created successfully, see your Email to confirm your Account");
   } catch (error) {
     console.log(error);
   }
