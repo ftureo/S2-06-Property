@@ -1,9 +1,11 @@
 import "./App.css";
-import UserRegister from "./Pages/UserRegister";
+import Navbar from "./components/Navbar";
+import UserRegister from "./pages/UserRegister";
 
 function App() {
   return (
     <>
+      <Navbar />
       <UserRegister />
     </>
   );
