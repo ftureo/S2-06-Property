@@ -1,9 +1,14 @@
 .error {
-  color: red;
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+  padding: 0.5em;
 }
 
 .true {
-  color: green;
+  background-color: green;
+  color: white;
+  border-radius: 5px;
 }
 
 .msg {
