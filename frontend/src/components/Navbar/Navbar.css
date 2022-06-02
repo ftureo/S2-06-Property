@@ -17,12 +17,15 @@
     position: absolute;
     left: 0;
     z-index: 200;
+    transition: all 845ms ease-in-out;
   }
 
   .Navbar--hamburger { /*Ojo, cualquier transform aplicado sobre esta clase afecta al after y before */
     background: transparent;
     border: 0;
     cursor: pointer;
+    
+    
  
   }
   
@@ -46,6 +49,8 @@
   }
   .Navbar--hamburger::after { /* posicionamiento */
     bottom: 6px;
+  }
+  .conOpen {
   }
 
   .conOpen .Navbar--hamburger::before {
@@ -83,6 +88,8 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    align-self: center;
+    width: 80vw;
 }
 .Navbar--userData p{
     margin: 0.5em;
@@ -91,6 +98,11 @@
 .Navbar--userHero{
     width: 30vw;
 }
+
+.Navbar--userEmail{
+text-decoration: underline;
+}
+
 .Navbar--list{
     list-style: none;
     align-self: center;
@@ -101,6 +113,7 @@
     height: 30%;
     width: 80vw;
     font-size: 1.25rem;
+    padding: 0;
 }
 
 .Navbar--list li{
@@ -115,4 +128,8 @@
   .Navbar--logo{
     justify-self: center;
     margin-inline: auto;
+}
+
+.Navbar--list li img{
+  fill: red;
 }
