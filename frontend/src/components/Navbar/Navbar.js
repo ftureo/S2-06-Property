@@ -17,7 +17,7 @@ function Navbar() {
             <nav class={isClosed?"Navbar--toggle":"Navbar--toggle navOpen"}>
                 <div className="Navbar--userData">
                     <img className="Navbar--userHero" src={portrait} alt="Portrait Icon"/>
-                    <p className="Navbar--userName">totoperez</p>
+                    <p className="Navbar--userName">Toto Perez</p>
                     <p className="Navbar--userEmail">nombredeusuario@gmail.com</p>
                 </div>
                 <ul class="Navbar--list">
