@@ -71,8 +71,15 @@ const Login = () => {
 
           <input className="submit-register" type="submit" value="Log In" />
         </form>
-        <Link to={"/forgot"}><p className="login--register">Did you forget your password? Click here!</p></Link>
-        <Link to={"/register"}> <p className="login--register">If you dont have a user, Click here!</p></Link>
+        <nav className="forgot-register">
+          <Link className="link-login" to={"/forgot"}>
+            <p className="login--register">Did you forget your password? Click here!</p>
+          </Link>
+          <Link className="link-login" to={"/register"}>
+            {" "}
+            <p className="login--register">If you dont have a user, Click here!</p>
+          </Link>
+        </nav>
       </div>
     </>
   );
