@@ -51,6 +51,7 @@
     bottom: 6px;
   }
   .conOpen {
+    transform: translateX(80vw);
   }
 
   .conOpen .Navbar--hamburger::before {
@@ -125,10 +126,6 @@ text-decoration: underline;
     cursor: pointer;
 }
 
-  .Navbar--logo{
-    justify-self: center;
-    margin-inline: auto;
-}
 
 .Navbar--list li img{
   fill: red;

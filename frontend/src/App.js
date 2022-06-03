@@ -1,14 +1,16 @@
 import "./App.css";
-import UserRegister from "./Pages/UserRegister";
-import UserLogin from "./components/Login";
-import Navbar from "./components/Navbar";
+
+import {BrowserRouter, Route, Routes } from "react-router-dom"
+import PublicRouter from "./routes/PublicRouter";
 
 function App() {
   return (
     <>
-      <UserLogin />
-      <Navbar />
-      <UserRegister />
+      <BrowserRouter >
+          <Routes>
+            <Route path="*" element= {<PublicRouter/>}/>
+          </Routes>
+      </BrowserRouter>
     </>
   );
 }
