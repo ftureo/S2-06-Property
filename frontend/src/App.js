@@ -1,12 +1,16 @@
 import "./App.css";
-import UserRegister from "./Pages/UserRegister";
-import UserLogin from "./components/Login";
+
+import {BrowserRouter, Route, Routes } from "react-router-dom"
+import PublicRouter from "./routes/PublicRouter";
 
 function App() {
   return (
     <>
-      <UserLogin />
-      <UserRegister />
+      <BrowserRouter >
+          <Routes>
+            <Route path="*" element= {<PublicRouter/>}/>
+          </Routes>
+      </BrowserRouter>
     </>
   );
 }

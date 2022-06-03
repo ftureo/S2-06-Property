@@ -1,8 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import Alerta from "../Alerta";
-import logo from "../../Assets/logo.svg";
+import logo from "../../assets/logo.svg";
 import "./login.css";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -70,6 +71,8 @@ const Login = () => {
 
           <input className="submit-register" type="submit" value="Log In" />
         </form>
+        <Link to={"/forgot"}><p className="login--register">Did you forget your password? Click here!</p></Link>
+        <Link to={"/register"}> <p className="login--register">If you dont have a user, Click here!</p></Link>
       </div>
     </>
   );

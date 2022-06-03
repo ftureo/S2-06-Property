@@ -1,11 +1,11 @@
 // Import Models
 import User from "../models/User.js";
-
 import createJWT from "../helpers/CreateJWT.js";
-
 // Import Helpers
 import AppError from "../helpers/AppError.js";
 import createId from "../helpers/createId.js";
+// Email token (Confirmed, Forget)
+import { emailToken } from "../helpers/email.js";
 
 // Create new user
 const createNewUser = async (req, res, next) => {
@@ -23,6 +23,7 @@ const createNewUser = async (req, res, next) => {
     const user = new User(req.body); // aca creamos un nuevo objeto de tipo user con la info del modelo
     user.token = createId(); // user es un objeto y le asignamos al token la funcion createId que es un id aleatorio(generamos un token por user)
     await user.save(); // le ponemos await, para que espere a que almacene el objeto y luego si te da la respuesta del json
+    emailToken ({email: user.email, name: user.name, token: user.token}) //Llamamos a la función del helper y le pasamos los datos del user
     res.json({
       msg: "user created successfully, see your Email to confirm your Account"
     });
@@ -65,10 +66,13 @@ const authenticate = async (req, res, next) => {
 const confirmed = async (req, res) => {
   // vamos a acceder a los datos del token a travez de la url CLASE 378
   const { token } = req.params; // extraemos el token que viene de la url
-  const userConfirmed = await User.findOne({ token }); // comprobamos si el token es el mismo que esta en la db
+  const userConfirmed = await User.findOne({ token: token }); // comprobamos si el token es el mismo que esta en la db
+  console.log(token)
+  console.log(userConfirmed)
   if (!userConfirmed) {
-    const error = new Error(" incorrect Token");
+    const error = new Error("incorrect Token");
     return res.status(400).json({ msg: error.message });
+    
   }
   // cuando encontramos al usuario que esta ok, lo primero es pasar el confirmed  a  true
   try {

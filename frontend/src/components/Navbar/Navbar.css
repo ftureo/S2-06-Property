@@ -1,0 +1,132 @@
+.Navbar{
+    height: 4em;
+    background-color: FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0px 3px rgba(156, 155, 155, 0.555);
+    position: sticky;
+}
+
+/* Hamburger */
+
+.Navbar--hamburger__container{
+    cursor: pointer;
+    padding: 1em;
+    display: flex;
+    position: absolute;
+    left: 0;
+    z-index: 200;
+    transition: all 845ms ease-in-out;
+  }
+
+  .Navbar--hamburger { /*Ojo, cualquier transform aplicado sobre esta clase afecta al after y before */
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    
+    
+ 
+  }
+  
+  .Navbar--hamburger,
+  .Navbar--hamburger::before,
+  .Navbar--hamburger::after { /* Son las 3 lineas que componen el hamburger */
+    background-color: black;
+    width: 2em;
+    height: 4px;
+    border-radius: 1em;
+    transition: transform 250ms ease-in-out;
+    margin-block: 3px;
+  }
+  .Navbar--hamburger::before,
+  .Navbar--hamburger::after {
+    content: "";/* Necesario si no tienen contenido no aparecen */
+    position: absolute;
+  }
+  .Navbar--hamburger::before { /* posicionamiento */
+    top: 6px;
+  }
+  .Navbar--hamburger::after { /* posicionamiento */
+    bottom: 6px;
+  }
+  .conOpen {
+    transform: translateX(80vw);
+  }
+
+  .conOpen .Navbar--hamburger::before {
+    transform: rotate(-393deg) scaleX(0.7) translateX(-13px);
+  }
+
+  .conOpen .Navbar--hamburger::after {
+    transform: rotate(393deg) scaleX(0.7) translateX(-13px) ; /* En si los unicos que manejan la animación son estos dos ultimos. Y el transition dentro del hamburger */
+  }
+  
+/* Lista deplegable */
+
+.Navbar--toggle {
+    opacity: 0;
+    width: 100vw;
+    transform: translateX(-100vw);
+    position: absolute;
+    background-color: white;
+    height: 100vh;
+    transition: all 800ms ease-in-out;
+    color: black;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.navOpen {
+    transform: translateX(0);
+    opacity: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.Navbar--userData{
+    margin: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: center;
+    width: 80vw;
+}
+.Navbar--userData p{
+    margin: 0.5em;
+}
+
+.Navbar--userHero{
+    width: 30vw;
+}
+
+.Navbar--userEmail{
+text-decoration: underline;
+}
+
+.Navbar--list{
+    list-style: none;
+    align-self: center;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 30%;
+    width: 80vw;
+    font-size: 1.25rem;
+    padding: 0;
+}
+
+.Navbar--list li{
+    display: flex;
+    box-shadow: 0px 4px 4px rgb(158, 157, 157);
+    align-items: center;
+    gap: 1em;
+    padding: 0.5em;
+    cursor: pointer;
+}
+
+
+.Navbar--list li img{
+  fill: red;
+}
