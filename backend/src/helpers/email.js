@@ -1,15 +1,9 @@
 import nodemailer from "nodemailer"
+import {transportVar}  from "./.transportVar.js";
 
 export const emailToken = async (user) => {
     const {email, name, token} = user;
-    const transport = nodemailer.createTransport({
-        host: "smtp.mailtrap.io",
-        port: 2525,
-        auth: {
-          user: "b11f6f6d7ff33e",
-          pass: "af8adfed0b608d"
-        }
-      });
+    const transport = nodemailer.createTransport(transportVar);
       const info = await transport.sendMail({
           from: '"GamaGames - User Accounts" <no-reply@gamagames.com>',
           to: email,
