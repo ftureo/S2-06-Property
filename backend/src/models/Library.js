@@ -4,13 +4,14 @@ const librarySchema = mongoose.Schema({
   product: [
     {
       productId: {
-        type: NUmber,
+        type: Number,
         unique: true,
       },
     },
   ],
   userID: {
     type: String,
+    required:true,
     ref: "User",
   },
 });

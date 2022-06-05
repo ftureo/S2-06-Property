@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import globalErrorHandler from "./src/middleware/error.middleware.js";
 import router from "./src/routes/user.routes.js";
+import routerLibrary from "./src/routes/library.routes.js";
 
 const app = express();
 
@@ -34,6 +35,7 @@ const corsOption = {
 app.use(cors(corsOption));
 
 app.use("/api/user", router);
+app.use("/api/library", routerLibrary);
 
 // Setting
 app.set("port", 4000);
