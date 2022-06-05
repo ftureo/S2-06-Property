@@ -4,21 +4,20 @@ import { useParams } from "react-router-dom";
 import Alerta from "../../components/Alerta";
 import { Link } from "react-router-dom";
 import "./Confirmed.css";
+import { axiosDB } from "../../services/axiosDB";
 
 function Confirmed() {
   const token = useParams();
 
   const [alert, setAlert] = useState({});
   const [confirm, setConfirm] = useState(false);
-  console.log(token.token);
   const getToken = async () => {
     try {
-      const { data } = await axios(
-        `http://localhost:4000/api/user/confirmed/${token.token}`
+      const { data } = await axiosDB(
+        `/user/confirmed/${token.token}`
       );
       setAlert({ msg: data.msg, error: false });
       setConfirm(true);
-      console.log(data);
     } catch (error) {
       setAlert({ msg: error.response.data.msg, error: true });
     }

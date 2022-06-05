@@ -2,10 +2,9 @@
 import User from "../models/User.js";
 import createJWT from "../helpers/CreateJWT.js";
 // Import Helpers
-import AppError from "../helpers/AppError.js";
 import createId from "../helpers/createId.js";
 // Email token (Confirmed, Forget)
-import { emailToken } from "../helpers/email.js";
+import { emailForgot, emailToken } from "../helpers/email.js";
 
 // Create new user
 const createNewUser = async (req, res, next) => {
@@ -98,6 +97,7 @@ const forgotPassword = async (req, res) => {
   try {
     user.token = createId(); // aca genero un  nuevo token que es el que le va a llegar por mail
     await user.save();
+    emailForgot ({email: user.email, name: user.name, token: user.token})
     res.json({ msg: "We have sent an email with intructions" });
   } catch (error) {
     console.log(error);

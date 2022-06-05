@@ -4,6 +4,7 @@ import Alerta from "../../components/Alerta";
 import logo from "../../assets/logo.svg";
 import "../../components/Login/login.css";
 import { Link } from "react-router-dom";
+import { axiosDB } from "../../services/axiosDB";
 
 
 
@@ -14,16 +15,31 @@ function ForgotEmail() {
     const handleSubmit = async (e) => {
       e.preventDefault();
       // validando que todos los campos se completen
-      if ([email].includes("")) {
+      if ([email].includes("") || email.length < 6) {
         setAlerta({
-          msg: "E-mail field can't be empty",
+          msg: "Please, input a correct e-mail",
           error: true
         });
         return;
       }
-      setAlerta({});
-    };
-    const { msg } = alerta;
+     // Enviado mail y token para reestablecer el password
+     try {
+      const { data } = await axiosDB.post(
+        `/user/forgot-password`,
+        { email } // Este email es lo que espera el backend, lo puedo ver en Postaman
+      );
+      setAlerta({
+        msg: data.msg,
+        error: false,
+      });
+    } catch (error) {
+      setAlerta({
+        msg: error.response.data.msg,
+        error: true,
+      });
+    }
+  };
+const { msg } = alerta;
   
     return ( 
         
