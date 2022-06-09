@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import Alerta from "../Alerta";
-import logo from "../../assets/logo.svg";
+import logo from "../../Assets/logo.svg";
 import "./login.css";
 import { Link } from "react-router-dom";
 

@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Alerta from "../../components/Alerta";
@@ -13,9 +12,7 @@ function Confirmed() {
   const [confirm, setConfirm] = useState(false);
   const getToken = async () => {
     try {
-      const { data } = await axiosDB(
-        `/user/confirmed/${token.token}`
-      );
+      const { data } = await axiosDB(`/user/confirmed/${token.token}`);
       setAlert({ msg: data.msg, error: false });
       setConfirm(true);
     } catch (error) {

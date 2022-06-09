@@ -1,0 +1,23 @@
+.home {
+  width: 100%;
+  background-color: #0c1e20;
+  padding: 4vw;
+}
+.container-previous {
+  height: 3vw;
+  align-items: center;
+  margin-bottom: 2vw;
+}
+.title-home {
+  width: 80%;
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
+  color: black;
+  background-color: #fff;
+  padding: 1vw;
+  border-radius: 5px;
+}
+.offer {
+  width: 60%;
+}

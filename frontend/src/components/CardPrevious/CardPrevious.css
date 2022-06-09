@@ -1,0 +1,14 @@
+.card-previous {
+  height: 8vw;
+}
+@media (max-width: 768px) {
+  .card-previous {
+    height: 15vw;
+  }
+}
+.image-cardPrevious {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  border-radius: 16px;
+}
