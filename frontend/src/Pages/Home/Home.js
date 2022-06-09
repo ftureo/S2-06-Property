@@ -1,5 +1,5 @@
 import CardPrevious from "../../components/CardPrevious/";
-import CardOffer from "../../components/CarfOffer";
+import CardOffer from "../../components/CardOffer";
 import "./Home.css";
 
 const Home = () => {
@@ -17,7 +17,7 @@ const Home = () => {
         <div className="container-previous d-flex col-2">
           <h1 className="title-home offer">OFFER</h1>
         </div>
-        <div className="d-flex col-12 justify-content-between border-radius-4">
+        <div className="d-flex col-12 justify-content-between">
           <CardOffer />
         </div>
       </div>

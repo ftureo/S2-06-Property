@@ -19,24 +19,22 @@ const CardOffer = () => {
       realPrice: 20
     },
     {
-      title: "title3",
+      title: "Back 4 Blood",
       platform: "PlayStation 4",
-      url: "https://cdn2.unrealengine.com/Diesel%2Fproductv2%2Ffar-cry-5%2Fgold-edition%2FGLD_Image_Hero_Carrousel-1920x1080-e640f6f18caff2a624776dc93110aef701c74308.jpg",
+      url: "https://cdn1.epicgames.com/57dfd95548214a138218e56cd9e5b9d8/offer/EGS_Back4Blood_TurtleRockStudios_S2-1200x1600-0cd4ac84bb5491a81aa6ebfcbea9dfbf.jpg",
       price: 20,
       genre: "sport",
       realPrice: 20
     },
     {
-      title: "name4",
+      title: "God of War",
       platform: "PlayStation 4",
-      url: "https://cdn2.unrealengine.com/Diesel%2Fproductv2%2Ffar-cry-5%2Fgold-edition%2FGLD_Image_Hero_Carrousel-1920x1080-e640f6f18caff2a624776dc93110aef701c74308.jpg",
+      url: "https://cdn1.epicgames.com/offer/3ddd6a590da64e3686042d108968a6b2/EGS_GodofWar_SantaMonicaStudio_S2_1200x1600-fbdf3cbc2980749091d52751ffabb7b7_1200x1600-fbdf3cbc2980749091d52751ffabb7b7",
       price: 20,
       genre: "sport",
       realPrice: 20
     }
   ];
-  console.log(imagesCardOffer);
-  console.table(imagesCardOffer);
   return imagesCardOffer.map((image, index) => {
     return (
       <div className="card-offer" key={index}>
@@ -44,7 +42,11 @@ const CardOffer = () => {
           className="image-CardOffer"
           style={{ backgroundImage: `url(${image.url})` }}
         ></div>
-        <h2>{image.title}</h2>
+        <div className='cardinfo'>
+        <h2 className='cardinfo-title'>{image.title}</h2>
+        <h3 className='cardinfo-description'>{image.platform} / {image.genre}</h3>
+        <h4 className='cardinfo-price'>US${image.price}</h4>
+        </div>
       </div>
     );
   });
